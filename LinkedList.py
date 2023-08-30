@@ -4,8 +4,8 @@ from os import system
 
 menu = """
 
-[0] Exit
-[1]Insert At Start
+[0]  Exit
+[1]  Insert At Start
 [2]  Insert At End
 [3]  Insert At Position
 [4]  Delete At Start
