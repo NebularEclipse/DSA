@@ -47,7 +47,7 @@ class LinkedList:
 		print("[1] No")
 		
 		try:
-			response = int(input(option))
+			response = int(input(option_text))
 		except ValueError:
 			clear()
 			self.terminate()
@@ -213,7 +213,7 @@ def main():
 	clear()
 	while True:
 		print(menu)
-		i = int(input(option))
+		i = int(input(option_text))
 		clear()
 		if i == 0:
 			list.terminate()
