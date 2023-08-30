@@ -2,6 +2,28 @@ from sys import platform
 from os import system
 
 
+menu = """
+
+[0] Exit
+[1]Insert At Start
+[2]  Insert At End
+[3]  Insert At Position
+[4]  Delete At Start
+[5]  Delete At End
+[6]  Delete At Position
+[7]  Delete Number
+[8]  Search Number
+[9]  Display Number At Position
+[10] Display List
+"""
+
+
+option_text = "Please choose an option: "
+int_text = "Enter an integer: "
+pos_text = "Enter position: "
+val_text = "Enter a value: "
+
+
 def clear():
 	if platform.startswith("win"):
 		system("cls")
@@ -23,13 +45,19 @@ class LinkedList:
 		print("Are you sure you want to exit?")
 		print("[0] Yes")
 		print("[1] No")
-
-		response = int(input("Enter option: "))
+		
+		try:
+			response = int(input(option))
+		except ValueError:
+			clear()
+			self.terminate()
+			return
 
 		if response == 0:
 			self.head = None
 			clear()
 			print("Thank you!")
+			input("Press Enter to exit...")
 			exit()
 		elif response == 1:
 			clear()
@@ -43,6 +71,8 @@ class LinkedList:
 		new_node = Node(data)
 		new_node.next = self.head
 		self.head = new_node
+		
+		print(f"You've inserted {data} to the start of the list.")
 
 	def insert_end(self, data):
 		new_node = Node(data)
@@ -54,6 +84,8 @@ class LinkedList:
 			while temp.next is not None:
 				temp = temp.next
 			temp.next = new_node
+			
+		print(f"You've inserted {data} to the end of the list.")
 
 	def insert_at(self, data, position):
 		if position == 1:
@@ -63,41 +95,63 @@ class LinkedList:
 		new = Node(data)
 		temp = self.head
 		for i in range(2, position):
-			temp = temp.next
+			if temp.next is not None:
+				temp = temp.next
+			else:
+				print("Position exceeds the size of the list.")
+				return
 		new.next = temp.next
 		temp.next = new
+		
+		print(f"You've inserted {data} to position {position} of the list.")
 
 	def delete_start(self):
 		if self.head is None:
+			print("The list is empty.")
 			return
-
+			
+		deleted = self.head.data
 		self.head = self.head.next
+		print(f"You've deleted {deleted} from the start of the list.")
 
 	def delete_end(self):
 		if self.head is None:
+			print("The list is empty.")
 			return
 
 		if self.head.next is None:
+			deleted = self.head.data
 			self.head = None
+			print(f"You've deleted {deleted} from the end of the list.")
 
 		temp = self.head
 		while temp.next.next is not None:
 			temp = temp.next
+		deleted = temp.next.data
 		temp.next = None
+		print(f"You've deleted {deleted} from the end of the list.")
 
 	def delete_at(self, position):
 		if position == 1 and self.head is not None:
+			deleted = self.head.data
 			self.delete_start()
+			print(f"You've deleted {deleted} from position {position} of the list."
 			return
 
 		temp = self.head
 		for i in range(2, position):
-			temp = temp.next
+			if temp.next is not None:
+				temp = temp.next
+			else:
+				print("Position exceeds the size of the list.")
+				return
+		deleted = temp.next.data
 		temp.next = temp.next.next
+		print(f"You've deleted {deleted} from position {position} of the list."
 
 	def delete_value(self, target):
 		if self.head is None:
-			print(f"{target} is not on the list and cannot be deleted.")
+			print("The list is empty.")
 			return
 
 		if self.head.data == target:
@@ -116,7 +170,7 @@ class LinkedList:
 
 	def find(self, target):
 		if self.head is None:
-			print("Value not found.")
+			print("The list is empty.")
 			return
 
 		temp = self.head
@@ -131,10 +185,18 @@ class LinkedList:
 			print("Value not found.")
 
 	def display_at(self, position):
+		if self.head is None:
+			print("The list is empty.")
+			return
+			
 		temp = self.head
 		for i in range(1, position):
-			temp = temp.next
-		print(temp.data)
+			if temp.next is not None:
+				temp = temp.next
+			else:
+				print("Position exceeds the size of the list.")
+				return
+		print(f"The value at position {position} is {temp.data}.")
 
 	def display(self):
 		temp = self.head
@@ -144,44 +206,69 @@ class LinkedList:
 			temp = temp.next
 		print("None")
 		print()
-		
+
+
 def main():
 	list = LinkedList()
 	clear()
 	while True:
-		print("[0]  Exit")
-		print("[1]  Insert At Start")
-		print("[2]  Insert At End")
-		print("[3]  Insert At Position")
-		print("[4]  Delete At Start")
-		print("[5]  Delete At End")
-		print("[6]  Delete At Position")
-		print("[7]  Delete Number")
-		print("[8]  Search Number")
-		print("[9]  Display Number At Position")
-		print("[10] Display List")
-		i = int(input("Enter option: "))
+		print(menu)
+		i = int(input(option))
 		clear()
 		if i == 0:
 			list.terminate()
 		elif i == 1:
-			list.insert_start(int(input("Enter number: ")))
+			while True:
+				try:
+					val = int(input(int_text))
+				except ValueError:
+					clear()
+					continue
+
+			list.insert_start(val)
 		elif i == 2:
-			list.insert_end(int(input("Enter number: ")))
+			while True:
+				try:
+					val = int(input(int_text))
+				except ValueError:
+					clear()
+					continue
+
+			list.insert_end(val)
 		elif i == 3:
-			list.insert_at(int(input("Enter number: ")), int(input("Enter position: ")))
+			while True:
+				try:
+					val = int(input(int_text))
+				except ValueError:
+					clear()
+					continue
+			while True:
+				try:
+					pos = int(input(pos_text))
+				except ValueError:
+					clear()
+					continue
+
+			list.insert_at(val, pos)
 		elif i == 4:
 			list.delete_start()
 		elif i == 5:
 			list.delete_end()
 		elif i == 6:
-			list.delete_at(int(input("Enter position: ")))
+			while True:
+				try:
+					pos = int(input(pos_text))
+				except ValueError:
+					clear()
+					continue
+
+			list.delete_at(pos)
 		elif i == 7:
-			list.delete_value(int(input("Enter value: ")))
+			list.delete_value(int(input(val_text)))
 		elif i == 8:
-			list.find(int(input("Enter value: ")))
+			list.find(int(input(val_text)))
 		elif i == 9:
-			list.display_at(int(input("Enter position: ")))
+			list.display_at(int(input(pos_text)))
 		elif i == 10:
 			list.display()
 		else:
