@@ -3,7 +3,6 @@ from os import system
 
 
 menu = """
-
 [0]  Exit
 [1]  Insert At Start
 [2]  Insert At End
@@ -58,6 +57,7 @@ class LinkedList:
 			clear()
 			print("Thank you!")
 			input("Press Enter to exit...")
+			clear()
 			exit()
 		elif response == 1:
 			clear()
@@ -98,7 +98,7 @@ class LinkedList:
 			if temp.next is not None:
 				temp = temp.next
 			else:
-				print("Position exceeds the size of the list.")
+				print("Position invalid.")
 				return
 		new.next = temp.next
 		temp.next = new
@@ -143,7 +143,7 @@ class LinkedList:
 			if temp.next is not None:
 				temp = temp.next
 			else:
-				print("Position exceeds the size of the list.")
+				print("Position invalid.")
 				return
 		deleted = temp.next.data
 		temp.next = temp.next.next
