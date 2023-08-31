@@ -135,7 +135,7 @@ class LinkedList:
 		if position == 1 and self.head is not None:
 			deleted = self.head.data
 			self.delete_start()
-			print(f"You've deleted {deleted} from position {position} of the list."
+			print(f"You've deleted {deleted} from position {position} of the list.")
 			return
 
 		temp = self.head
@@ -147,7 +147,7 @@ class LinkedList:
 				return
 		deleted = temp.next.data
 		temp.next = temp.next.next
-		print(f"You've deleted {deleted} from position {position} of the list."
+		print(f"You've deleted {deleted} from position {position} of the list.")
 
 	def delete_value(self, target):
 		if self.head is None:
