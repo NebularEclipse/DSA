@@ -135,7 +135,7 @@ class LinkedList:
 		if position == 1 and self.head is not None:
 			deleted = self.head.data
 			self.delete_start()
-			print(f"You've deleted {deleted} from position {position} of the list.")
+			print(f"You've deleted {deleted} from position {position} of the list."
 			return
 
 		temp = self.head
@@ -147,7 +147,7 @@ class LinkedList:
 				return
 		deleted = temp.next.data
 		temp.next = temp.next.next
-		print(f"You've deleted {deleted} from position {position} of the list.")
+		print(f"You've deleted {deleted} from position {position} of the list."
 
 	def delete_value(self, target):
 		if self.head is None:
@@ -224,6 +224,8 @@ def main():
 				except ValueError:
 					clear()
 					continue
+				else:
+					break
 
 			list.insert_start(val)
 		elif i == 2:
@@ -233,6 +235,8 @@ def main():
 				except ValueError:
 					clear()
 					continue
+				else:
+					break
 
 			list.insert_end(val)
 		elif i == 3:
@@ -242,12 +246,16 @@ def main():
 				except ValueError:
 					clear()
 					continue
+				else:
+					break
 			while True:
 				try:
 					pos = int(input(pos_text))
 				except ValueError:
 					clear()
 					continue
+				else:
+					break
 
 			list.insert_at(val, pos)
 		elif i == 4:
@@ -261,6 +269,8 @@ def main():
 				except ValueError:
 					clear()
 					continue
+				else:
+					break
 
 			list.delete_at(pos)
 		elif i == 7:
