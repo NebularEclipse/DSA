@@ -15,6 +15,11 @@ class Queue():
             return None
         return self.queue.pop(0)
     
+    def peek(self):
+        if self.size() > 0:
+            return self.queue[0]
+        return None
+    
     def size(self):
         return len(self.queue)
 
@@ -28,3 +33,25 @@ class Queue():
     def display(self):
         print(self.queue)
 
+
+class Workload():
+    def __init__(self):
+        self.q = []
+        for i in range(3):
+            self.q.append(Queue())
+
+    def workload_enqueue(self, value):
+        min = 0
+        for i in range(3):
+            if self.q[i].workload() < self.q[min].workload():
+                min = i
+
+        self.q[min].enqueue(value)
+
+    def workload_dequeue(self):
+        min = 0
+        for i in range(3):
+            if self.q[i].peek() < self.q[min].peek():
+                min = i
+
+        return self.q[min].dequeue()
