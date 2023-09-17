@@ -94,15 +94,6 @@ def main():
 	
 	# While stacks have heights.
 	while stacks[0].height > 0 or stacks[1].height > 0 or stacks[2].height > 0:
-		# Find stack with highest height.
-		max_index = 0
-		for i in range(3):
-			if stacks[i].height > stacks[max_index].height:
-				max_index = i
-		
-		# Pop from the stack with highest height.
-		stacks[max_index].pop()
-		
 		# If all stacks have similar heights, print their heights.
 		if stacks[0].height == stacks[1].height == stacks[2].height and stacks[0].height != 0:
 			print(f"All stacks are equal at Height: {stacks[0].height}")
@@ -113,6 +104,16 @@ def main():
 				print()
 			print(dash)
 			cont()
+		
+		# Find stack with highest height.
+		max_index = 0
+		for i in range(3):
+			if stacks[i].height > stacks[max_index].height:
+				max_index = i
+		
+		# Pop from the stack with highest height.
+		stacks[max_index].pop()
+		
 	
 	# Print "Stack heights will never be equal."
 	print("Stack heights will never be equal.")
