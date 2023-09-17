@@ -45,7 +45,7 @@ def cont():
 	if user_input == "y":
 		print(dash)
 		main()
-	elif user_input == "n":
+	elif user_inout == "n":
 		input("Thank you!")
 		exit()
 	else:
@@ -55,6 +55,7 @@ def cont():
 def main():
 	stacks = []
 	for i in range(3):
+		stacks.append(Stack())
 		user_input = input(f"Enter elements of Stack {i + 1}: ")
 		numbers = user_input.split()
 		for number in numbers:
