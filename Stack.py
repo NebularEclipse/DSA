@@ -87,9 +87,11 @@ def main():
 				while stacks[i].size > 0:
 					print(stacks[i].pop(), end=" ")
 				print()
+			print(dash)
 			cont()
 		
 	print("Stack heights will never be equal.")
+	print(dash)
 	cont()
 
 
