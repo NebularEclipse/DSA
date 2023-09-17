@@ -75,7 +75,7 @@ def main():
 	while stacks[0].height > 0 or stacks[1].height > 0 or stacks[2].height > 0:
 		max_index = 0
 		for i in range(3):
-			if stacks[i].height > stacks[max_index]:
+			if stacks[i].height > stacks[max_index].height:
 				max_index = i
 				
 		stacks[max_index].pop()
