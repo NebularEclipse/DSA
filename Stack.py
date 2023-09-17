@@ -104,7 +104,7 @@ def main():
 		stacks[max_index].pop()
 		
 		# If all stacks have similar heights, print their heights.
-		if stacks[0].height == stacks[1].height == stacks[2].height:
+		if stacks[0].height == stacks[1].height == stacks[2].height and stacks[0].height != 0:
 			print(f"All stacks are equal at Height: {stacks[0].height}")
 			for i in range(3):
 				print(f"Stack {i + 1}: ", end=" ")
