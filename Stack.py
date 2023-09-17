@@ -43,7 +43,7 @@ dash = "------------------------------------------------------------------------
 def cont():
 	user_input = input("Continue? Y or N? ").lower()
 	if user_input == "y":
-    print(dash)
+		print(dash)
 		main()
 	elif user_inout == "n":
 		input("Thank you!")
