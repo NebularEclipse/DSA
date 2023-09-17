@@ -45,7 +45,7 @@ def cont():
 	if user_input == "y":
 		print(dash)
 		main()
-	elif user_inout == "n":
+	elif user_input == "n":
 		input("Thank you!")
 		exit()
 	else:
