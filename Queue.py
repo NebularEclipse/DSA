@@ -12,7 +12,7 @@ class Queue:
 
     def dequeue(self):
         if self.size() == 0:
-            print("The queue is empty")
+            print("The queues are empty")
             return None
         self.workload -= self.queue.pop(0)
 
@@ -41,7 +41,9 @@ class Workload:
         min = 0
 
         for i in range(1, self.size):
-            if self.queues[i].queue[0] < self.queues[min].queue[0] and self.queues[i].size() != 0:
+            if self.queues[min].size() == 0:
+                min = i
+            if self.queues[i].size() != 0 and self.queues[i].queue[0] < self.queues[min].queue[0]:
                 min = i
 
         self.queues[min].dequeue()
@@ -62,11 +64,15 @@ def get_int(prompt):
 
 def terminate():
     prompt = """Are you sure you want to exit?
-    [0] Yes
-    [1] No
-    Choice: """
+[0] Yes
+[1] No
+Choice: """
 
     choice = get_int(prompt)
+
+    dash = "--------------------------------"
+
+    print(dash)
 
     if choice == 0:
         input("Thank you!")
@@ -79,11 +85,15 @@ def terminate():
 
 def menu(queues):
     menu = """[0] Exit
-    [1] Enqueue workload
-    [2] Dequeue workload
-    Choice: """
+[1] Enqueue workload
+[2] Dequeue workload
+Choice: """
 
     choice = get_int(menu)
+
+    dash = "--------------------------------"
+
+    print(dash)
 
     if choice == 0:
         terminate()
