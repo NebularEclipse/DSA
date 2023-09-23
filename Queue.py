@@ -99,7 +99,7 @@ def menu(queues):
 
 
 def main():
-    queues = Workload()
+    queues = Workload(3)
     dash = "--------------------------------"
     while True:
         menu(queues)
