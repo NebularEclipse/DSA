@@ -67,7 +67,7 @@ def terminate():
     Choice: """
 
     choice = get_int(prompt)
-    
+
     if choice == 0:
         input("Thank you!")
         exit()
