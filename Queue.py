@@ -78,7 +78,7 @@ def terminate():
 		
 
 def menu(queues):
-	menu = ""'[0] Exit
+	menu = """[0] Exit
 	[1] Enqueue workload
 	[2] Dequeue workload
 	Choice: """
