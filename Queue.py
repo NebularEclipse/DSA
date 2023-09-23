@@ -41,9 +41,7 @@ class Workload:
         min = 0
 
         for i in range(1, self.size):
-            if self.queues[min].size() == 0:
-                min = i
-            if self.queues[i].size() != 0 and self.queues[i].queue[0] < self.queues[min].queue[0]:
+            if self.queues[min].size() == 0 or (self.queues[i].size() != 0 and self.queues[i].queue[0] < self.queues[min].queue[0]):
                 min = i
 
         self.queues[min].dequeue()
